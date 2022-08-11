@@ -1,0 +1,178 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+Tool0 = Instance.new("Tool")
+Part1 = Instance.new("Part")
+RotateP2 = Instance.new("RotateP")
+LocalScript3 = Instance.new("LocalScript")
+Part4 = Instance.new("Part")
+SpecialMesh5 = Instance.new("SpecialMesh")
+Part6 = Instance.new("Part")
+SpecialMesh7 = Instance.new("SpecialMesh")
+Script8 = Instance.new("Script")
+Tool0.Name = "Candy"
+Tool0.Parent = mas
+Tool0.Grip = CFrame.new(0.300000012, 0, 0, 0.217036337, 0, 0.976163507, -0, 1, -0, -0.976163507, 0, 0.217036337)
+Tool0.GripForward = Vector3.new(-0.9761635065078735, 0, -0.21703633666038513)
+Tool0.GripPos = Vector3.new(0.30000001192092896, 0, 0)
+Tool0.GripRight = Vector3.new(0.21703633666038513, -0, -0.9761635065078735)
+Part1.Name = "Handle"
+Part1.Parent = Tool0
+Part1.CFrame = CFrame.new(-45, 0.50965023, -86, 0.999809623, 0.0194900706, 7.2745629e-15, -0.0194911435, 0.999809563, -2.66453526e-15, -3.92741395e-15, 8.8817842e-16, 0.999999046)
+Part1.Orientation = Vector3.new(0, 0, -1.1200000047683716)
+Part1.Position = Vector3.new(-45, 0.5096502304077148, -86)
+Part1.Rotation = Vector3.new(0, 0, -1.1200000047683716)
+Part1.Color = Color3.new(0.768627, 0.156863, 0.109804)
+Part1.Velocity = Vector3.new(0.00011697821173584089, -0.008348331786692142, 4.161014643955241e-09)
+Part1.Size = Vector3.new(1, 1, 1)
+Part1.BottomSurface = Enum.SurfaceType.Smooth
+Part1.BrickColor = BrickColor.new("Bright red")
+Part1.RotVelocity = Vector3.new(5.6567315276367935e-09, 1.8965320633390625e-11, 0.0005258592427708209)
+Part1.TopSurface = Enum.SurfaceType.Smooth
+Part1.brickColor = BrickColor.new("Bright red")
+Part1.Shape = Enum.PartType.Ball
+RotateP2.Name = "d��������������ng.........you got owned..."
+RotateP2.Parent = Part1
+RotateP2.BaseAngle = 0.25
+LocalScript3.Name = "Local Gui"
+LocalScript3.Parent = Tool0
+table.insert(cors,sandbox(LocalScript3,function()
+local Tool = script.Parent;
+
+enabled = true
+
+function onButton1Down(mouse)
+	if not enabled  then
+		return
+	end
+
+	enabled = false
+	Tool.GripForward = Vector3.new(-0,-0,1)
+	Tool.GripPos = Vector3.new(-1.5, -0.7, -0.3)
+	Tool.GripRight = Vector3.new(-1, 0, 0)
+	Tool.GripUp = Vector3.new(0, 1, 0)
+	wait(1)
+	Tool.GripForward = Vector3.new(-0,-0,1)
+	Tool.GripPos = Vector3.new(-1.5, -0.7, 0.2)
+	Tool.GripRight = Vector3.new(-1, 0, 0)
+	Tool.GripUp = Vector3.new(0, 1, 0)
+	wait(1)
+	Tool.GripForward = Vector3.new(-0,-0,1)
+	Tool.GripPos = Vector3.new(-1.5, -0.7, 0.6)
+	Tool.GripRight = Vector3.new(-1, 0, 0)
+	Tool.GripUp = Vector3.new(0, 1, 0)
+	wait(1)
+	Tool.Parent.Humanoid.Health = Tool.Parent.Humanoid.Health - 0
+	script.Parent:remove()
+
+end
+
+function onEquippedLocal(mouse)
+
+	if mouse == nil then
+		print("Mouse not found")
+		return 
+	end
+
+	mouse.Icon = "rbxasset://textures\\ArrowCursor.png"
+	mouse.Button1Down:connect(function() onButton1Down(mouse) end)
+end
+
+
+Tool.Equipped:connect(onEquippedLocal)
+
+end))
+Part4.Parent = Tool0
+Part4.CFrame = CFrame.new(-45.6999969, 0.520320296, -86, 7.73034117e-07, 0.999999344, 2.14845502e-15, -0.999999344, -7.74824002e-07, -8.8817842e-16, 8.8817842e-16, 2.13891405e-15, 0.999998569)
+Part4.Orientation = Vector3.new(0, 0, -90)
+Part4.Position = Vector3.new(-45.69999694824219, 0.5203202962875366, -86)
+Part4.Rotation = Vector3.new(0, 0, -90)
+Part4.Color = Color3.new(0.768627, 0.156863, 0.109804)
+Part4.Velocity = Vector3.new(0.00011140295828226954, -0.008716431446373463, 4.23426405049554e-09)
+Part4.Size = Vector3.new(1, 0.4000000059604645, 1)
+Part4.BottomSurface = Enum.SurfaceType.Weld
+Part4.BrickColor = BrickColor.new("Bright red")
+Part4.RotVelocity = Vector3.new(5.6567315276367935e-09, 1.8965320633390625e-11, 0.0005258592427708209)
+Part4.TopSurface = Enum.SurfaceType.Smooth
+Part4.brickColor = BrickColor.new("Bright red")
+SpecialMesh5.Parent = Part4
+SpecialMesh5.MeshId = "http://www.roblox.com/asset/?id=1033714"
+SpecialMesh5.Scale = Vector3.new(0.5, 1, 0.5)
+SpecialMesh5.MeshType = Enum.MeshType.FileMesh
+Part6.Parent = Tool0
+Part6.CFrame = CFrame.new(-44.3000031, 0.520319223, -86, 2.98023224e-07, -0.999999762, -1.22731686e-15, -0.999999762, 2.98023224e-07, 0, 0, -1.22731686e-15, -0.999999523)
+Part6.Orientation = Vector3.new(0, -180, -90)
+Part6.Position = Vector3.new(-44.30000305175781, 0.5203192234039307, -86)
+Part6.Rotation = Vector3.new(-180, 0, 90)
+Part6.Color = Color3.new(0.768627, 0.156863, 0.109804)
+Part6.Velocity = Vector3.new(0.00011133215593872592, -0.007980232127010822, 4.208474457811917e-09)
+Part6.Size = Vector3.new(1, 0.4000000059604645, 1)
+Part6.BottomSurface = Enum.SurfaceType.Weld
+Part6.BrickColor = BrickColor.new("Bright red")
+Part6.RotVelocity = Vector3.new(5.6567315276367935e-09, 1.8965320633390625e-11, 0.0005258592427708209)
+Part6.TopSurface = Enum.SurfaceType.Smooth
+Part6.brickColor = BrickColor.new("Bright red")
+SpecialMesh7.Parent = Part6
+SpecialMesh7.MeshId = "http://www.roblox.com/asset/?id=1033714"
+SpecialMesh7.Scale = Vector3.new(0.5, 1, 0.5)
+SpecialMesh7.MeshType = Enum.MeshType.FileMesh
+Script8.Name = "Welding"
+Script8.Parent = Tool0
+table.insert(cors,sandbox(Script8,function()
+function Weld(x,y)
+	local W = Instance.new("Weld")
+	W.Part0 = x
+	W.Part1 = y
+	local CJ = CFrame.new(x.Position)
+	local C0 = x.CFrame:inverse()*CJ
+	local C1 = y.CFrame:inverse()*CJ
+	W.C0 = C0
+	W.C1 = C1
+	W.Parent = x
+end
+
+function Get(A)
+	if A.className == "Part" then
+		Weld(script.Parent.Handle, A)
+		A.Anchored = false
+	else
+		local C = A:GetChildren()
+		for i=1, #C do
+		Get(C[i])
+		end
+	end
+end
+
+function Finale()
+	Get(script.Parent)
+end
+
+script.Parent.Equipped:connect(Finale)
+script.Parent.Unequipped:connect(Finale)
+Finale()
+end))
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = game:GetService("Players").LocalPlayer.Backpack
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
