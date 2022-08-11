@@ -1,0 +1,192 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+Tool0 = Instance.new("Tool")
+Part1 = Instance.new("Part")
+SpecialMesh2 = Instance.new("SpecialMesh")
+Sparkles3 = Instance.new("Sparkles")
+Animation4 = Instance.new("Animation")
+LocalScript5 = Instance.new("LocalScript")
+Sound6 = Instance.new("Sound")
+Animation7 = Instance.new("Animation")
+LocalScript8 = Instance.new("LocalScript")
+LocalScript9 = Instance.new("LocalScript")
+Tool0.Name = "BanHammar"
+Tool0.Parent = mas
+Tool0.TextureId = "http://www.roblox.com/asset/?id=10684453"
+Tool0.Grip = CFrame.new(0, -1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Tool0.GripPos = Vector3.new(0, -1, 0)
+Part1.Name = "Handle"
+Part1.Parent = Tool0
+Part1.CFrame = CFrame.new(35.7863045, 3.77968693, 52.9963379, 1, 0, 0, 0, 0.999987066, 0.00509052863, 0, -0.00509052863, 0.999987066)
+Part1.Orientation = Vector3.new(-0.28999999165534973, 0, 0)
+Part1.Position = Vector3.new(35.78630447387695, 3.77968692779541, 52.996337890625)
+Part1.Rotation = Vector3.new(-0.28999999165534973, 0, 0)
+Part1.Color = Color3.new(0.388235, 0.372549, 0.384314)
+Part1.Size = Vector3.new(1, 5.200000286102295, 1)
+Part1.BottomSurface = Enum.SurfaceType.Smooth
+Part1.BrickColor = BrickColor.new("Dark stone grey")
+Part1.CanCollide = false
+Part1.TopSurface = Enum.SurfaceType.Smooth
+Part1.brickColor = BrickColor.new("Dark stone grey")
+Part1.FormFactor = Enum.FormFactor.Plate
+Part1.formFactor = Enum.FormFactor.Plate
+SpecialMesh2.Parent = Part1
+SpecialMesh2.MeshId = "http://www.roblox.com/asset/?id=10604848"
+SpecialMesh2.Scale = Vector3.new(0.5, 0.5, 0.5)
+SpecialMesh2.TextureId = "http://www.roblox.com/asset/?id=10605252"
+SpecialMesh2.MeshType = Enum.MeshType.FileMesh
+Sparkles3.Parent = Part1
+Sparkles3.Color = Color3.new(0, 0, 0)
+Sparkles3.SparkleColor = Color3.new(0, 0, 0)
+Animation4.Name = "Attack"
+Animation4.Parent = Tool0
+Animation4.AnimationId = "rbxassetid://7335279276"
+LocalScript5.Name = "main"
+LocalScript5.Parent = Tool0
+table.insert(cors,sandbox(LocalScript5,function()
+--Impletion [awful coding i know]
+wait()
+explode=false
+soundlock=false
+lock=false
+script.Parent.Activated:connect(function(click)
+	if lock==false then
+	lock=true
+	local char=script.Parent.Parent
+	local anim=char.Humanoid:LoadAnimation(script.Parent.Attack)
+	anim:Play()
+	wait(1.4)
+	lock=false
+	end
+end)
+
+
+
+script.Parent.Handle.Touched:connect(function(hit)
+	local gethum=hit.Parent:GetChildren()
+		for i=1,#gethum do
+			if gethum[i].ClassName=="Humanoid" and gethum[i] ~= nil and hit.Parent.Name ~= game.Players.LocalPlayer.Name and lock==true then
+				local hum=gethum[i]
+				hum.Sit=true
+				if soundlock==false then
+					soundlock=true
+					script.Parent.Smash:Play()
+				end
+			local character=hit.Parent
+			local b=character:GetChildren()
+				for i=1,#b do
+					if b[i]:IsA("Part") and b[i] ~= nil then
+						b[i].CanCollide=false
+						b[i].Anchored=false
+					end
+				end
+					local torso=hit.Parent:findFirstChild("Torso")
+					character.Torso.Velocity=game.Players.LocalPlayer.Character.Torso.CFrame.lookVector * 1200 
+					character.Torso.Velocity=character.Torso.Velocity + Vector3.new(0,300,0)
+					wait(1.8)
+					if explode==false then
+						explode=true
+						local expl=Instance.new("Explosion", workspace)
+						expl.BlastPressure=9000000
+						expl.BlastRadius=100
+						expl.Position=torso.Position
+						character:BreakJoints()
+						local p=game.Players:GetPlayerFromCharacter(character)
+						character:Destroy()
+						if p ~= nil then
+						p:Destroy()
+						end
+					end
+				end
+			end
+	wait(1)
+	soundlock=false
+	explode=false
+end)
+
+script.Parent.Equipped:connect(function(equip)
+	game.Players.LocalPlayer.Character.Humanoid.MaxHealth=math.huge
+	game.Players.LocalPlayer.Character.Humanoid.Health=math.huge
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=25
+end)
+end))
+Sound6.Parent = Tool0
+Sound6.SoundId = "rbxassetid://216782105"
+Sound6.Volume = 10
+Animation7.Name = "Idle"
+Animation7.Parent = Tool0
+Animation7.AnimationId = "rbxassetid://7335307156"
+LocalScript8.Name = "PlayAnim"
+LocalScript8.Parent = Tool0
+table.insert(cors,sandbox(LocalScript8,function()
+Tool = script.Parent
+Handle = Tool:WaitForChild("Handle")
+
+Players = game:GetService("Players")
+
+IdleAnim = Tool:WaitForChild("Idle")
+
+function Equipped()
+	Character = Tool.Parent
+	Player = Players:GetPlayerFromCharacter(Character)
+	Humanoid = Character:FindFirstChild("Humanoid")
+	if not Player or not Humanoid or Humanoid.Health == 0 then
+		return
+	end
+	
+	IdleTrack = Humanoid:LoadAnimation(IdleAnim)
+	if IdleTrack then
+		IdleTrack:Play()
+	end
+end
+
+function Unequipped()
+	if EquipTrack then
+		
+	end
+	if IdleTrack then
+		IdleTrack:Stop()
+	end
+end
+
+Tool.Changed:connect(Changed)
+Tool.Equipped:connect(Equipped)
+Tool.Unequipped:connect(Unequipped)
+end))
+LocalScript9.Name = "Sound Play"
+LocalScript9.Parent = Tool0
+table.insert(cors,sandbox(LocalScript9,function()
+tool = script.Parent
+handle = tool:WaitForChild'Handle'
+sound = handle:WaitForChild'Sound'
+
+tool.Activated:connect(function()
+	sound:Play()
+end)
+end))
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = game:GetService("Players").LocalPlayer.Backpack
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
