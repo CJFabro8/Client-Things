@@ -1,0 +1,126 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+Tool0 = Instance.new("Tool")
+Part1 = Instance.new("Part")
+Sound2 = Instance.new("Sound")
+Sound3 = Instance.new("Sound")
+Script4 = Instance.new("Script")
+Script5 = Instance.new("Script")
+Script6 = Instance.new("Script")
+Tool0.Name = "augh"
+Tool0.Parent = mas
+Tool0.TextureId = "rbxassetid://9321874276"
+Part1.Name = "Handle"
+Part1.Parent = Tool0
+Part1.CFrame = CFrame.new(-42, 0.5, -98, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Part1.Position = Vector3.new(-42, 0.5, -98)
+Part1.Size = Vector3.new(4, 1, 2)
+Part1.BottomSurface = Enum.SurfaceType.Smooth
+Part1.TopSurface = Enum.SurfaceType.Smooth
+Sound2.Name = "i like ya cut g"
+Sound2.Parent = Part1
+Sound2.SoundId = "rbxassetid://5652336887"
+Sound3.Name = "ahh"
+Sound3.Parent = Part1
+Sound3.SoundId = "rbxassetid://4789104992"
+Script4.Parent = Part1
+table.insert(cors,sandbox(Script4,function()
+--Made by INJUNYL! 
+-- One note anything below 30 will do nothing, 300 will do mild fling, and above 1000 will launch you extrmeley far
+
+local FlingAmount = 1500 	--Make it high, to go to the sky...
+local sound = true			--KEEP AT FALSE if you already have a hit sound
+local sit = true			--If it makes the player sit. (not reccomended - INJUNYL)
+local e = false				--Do not change.
+local explode = true		--Change to true for explosion when flung
+
+
+function hit(Touch) 
+	local blender = Touch.Parent:FindFirstChild("Head") 
+	if not (blender == nil) then
+		if e == false then
+		e = true
+		local bv = Instance.new("BodyVelocity")
+		bv.P = 1250
+		bv.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
+		bv.Velocity = blender.CFrame.lookVector*-FlingAmount
+		bv.Parent = blender
+		if sit == true then
+		Touch.Parent:FindFirstChild("Humanoid").Sit = true
+		end
+		if sound == true then
+			local s = script.Parent.ahh:Clone()
+			local playback = 1
+			s.Parent = blender
+			s.PlaybackSpeed = playback
+			s:Play()
+		end
+		wait(.05)
+		bv:Destroy()
+		wait(.2)
+	
+	e = false
+		wait(1)
+		if explode == true then
+			local ex = Instance.new("Explosion")
+			ex.ExplosionType = Enum.ExplosionType.NoCraters
+			ex.BlastPressure = 100000
+			ex.BlastRadius = 2
+			ex.Visible = true					
+			ex.DestroyJointRadiusPercent = 0
+			ex.Position = blender.Position
+			ex.Parent = blender
+			Touch.Parent:FindFirstChild("Humanoid").Health = 0 
+		end
+
+
+
+		end
+	end 
+end
+
+script.Parent.Touched:connect(hit)
+end))
+Script5.Parent = Tool0
+table.insert(cors,sandbox(Script5,function()
+function Equipped()
+	local sound = script.Parent.Handle["i like ya cut g"]
+	sound:Play()
+end
+end))
+Script6.Name = "*Fixed* PulloutSound*"
+Script6.Parent = Tool0
+table.insert(cors,sandbox(Script6,function()
+local Tool = script.Parent.Handle
+enabled = true
+function onEquipped()
+	script.Parent.Handle["i like ya cut g"]:Play()
+end
+script.Parent.Equipped:connect(onEquipped)
+end))
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = game:GetService("Players").LocalPlayer.Backpack
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
