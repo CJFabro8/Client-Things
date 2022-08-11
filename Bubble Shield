@@ -1,0 +1,69 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+Tool0 = Instance.new("Tool")
+Part1 = Instance.new("Part")
+Part2 = Instance.new("Part")
+Weld3 = Instance.new("Weld")
+Tool0.Name = "bubble shield"
+Tool0.Parent = mas
+Tool0.Grip = CFrame.new(1.29999995, 0.600000024, -1.5, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Tool0.GripPos = Vector3.new(1.2999999523162842, 0.6000000238418579, -1.5)
+Part1.Name = "Handle"
+Part1.Parent = Tool0
+Part1.CFrame = CFrame.new(-9, 3, 6, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Part1.Position = Vector3.new(-9, 3, 6)
+Part1.Color = Color3.new(0.0509804, 0.411765, 0.67451)
+Part1.Transparency = 0.4000000059604645
+Part1.Size = Vector3.new(6, 6, 6)
+Part1.BottomSurface = Enum.SurfaceType.Smooth
+Part1.BrickColor = BrickColor.new("Bright blue")
+Part1.Material = Enum.Material.SmoothPlastic
+Part1.Reflectance = 0.699999988079071
+Part1.TopSurface = Enum.SurfaceType.Smooth
+Part1.brickColor = BrickColor.new("Bright blue")
+Part1.Shape = Enum.PartType.Ball
+Part2.Name = " "
+Part2.Parent = Part1
+Part2.CFrame = CFrame.new(-9, 3.19999981, 6, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Part2.Position = Vector3.new(-9, 3.1999998092651367, 6)
+Part2.Color = Color3.new(0.972549, 0.972549, 0.972549)
+Part2.Transparency = 9
+Part2.Size = Vector3.new(6, 6, 6)
+Part2.BottomSurface = Enum.SurfaceType.Smooth
+Part2.BrickColor = BrickColor.new("Institutional white")
+Part2.Material = Enum.Material.SmoothPlastic
+Part2.TopSurface = Enum.SurfaceType.Smooth
+Part2.brickColor = BrickColor.new("Institutional white")
+Part2.Shape = Enum.PartType.Ball
+Weld3.Name = "BTWeld"
+Weld3.Parent = Part1
+Weld3.C1 = CFrame.new(0, -0.199999809, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Weld3.Part0 = Part1
+Weld3.Part1 = Part2
+Weld3.part1 = Part2
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = game:GetService("Players").LocalPlayer.Backpack
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
