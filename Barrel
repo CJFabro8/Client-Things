@@ -1,0 +1,280 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+Tool0 = Instance.new("Tool")
+Part1 = Instance.new("Part")
+SpecialMesh2 = Instance.new("SpecialMesh")
+LocalScript3 = Instance.new("LocalScript")
+Script4 = Instance.new("Script")
+Script5 = Instance.new("Script")
+Animation6 = Instance.new("Animation")
+Tool0.Name = "ThrowingBarrel"
+Tool0.Parent = mas
+Tool0.TextureId = "http://www.roblox.com/asset/?id=29874079"
+Tool0.Grip = CFrame.new(-0.400000006, -0.0500000007, 0.109999999, 0, 0, -1, -0, 1, 0, 1, 0, 0)
+Tool0.GripForward = Vector3.new(1, -0, -0)
+Tool0.GripPos = Vector3.new(-0.4000000059604645, -0.05000000074505806, 0.10999999940395355)
+Tool0.GripRight = Vector3.new(0, -0, 1)
+Part1.Name = "Handle"
+Part1.Parent = Tool0
+Part1.CFrame = CFrame.new(-6, 0.600000024, 1, 1, -2.20268248e-13, 0, -2.20268248e-13, 1, 2.27373675e-13, 0, 2.27373675e-13, 1)
+Part1.Position = Vector3.new(-6, 0.6000000238418579, 1)
+Part1.Size = Vector3.new(1, 1.2000000476837158, 1)
+Part1.BottomSurface = Enum.SurfaceType.Smooth
+Part1.TopSurface = Enum.SurfaceType.Smooth
+SpecialMesh2.Parent = Part1
+SpecialMesh2.MeshId = "http://www.roblox.com/asset/?id=29873142"
+SpecialMesh2.Scale = Vector3.new(0.44999998807907104, 0.44999998807907104, 0.44999998807907104)
+SpecialMesh2.TextureId = "http://www.roblox.com/asset/?id=31082268"
+SpecialMesh2.MeshType = Enum.MeshType.FileMesh
+LocalScript3.Name = "Local Gui"
+LocalScript3.Parent = Tool0
+table.insert(cors,sandbox(LocalScript3,function()
+local Tool = script.Parent;
+local anim = nil
+
+enabled = true
+function onButton1Down(mouse)
+	if not enabled then
+		return
+	end
+
+	enabled = false
+	mouse.Icon = "rbxasset://textures\\ArrowFarCursor.png"
+	anim:Play()
+	wait(1)
+	mouse.Icon = "rbxasset://textures\\ArrowCursor.png"
+	enabled = true
+
+end
+
+function onEquippedLocal(mouse)
+
+	if mouse == nil then
+		print("Mouse not found")
+		return 
+	end
+
+	anim = Tool.Parent:FindFirstChild("Humanoid"):LoadAnimation(Tool.barrelthrow)
+
+	mouse.Icon = "rbxasset://textures\\ArrowCursor.png"
+	mouse.Button1Down:connect(function() onButton1Down(mouse) end)
+end
+
+Tool.Equipped:connect(onEquippedLocal)
+
+end))
+Script4.Parent = Tool0
+table.insert(cors,sandbox(Script4,function()
+local Tool = script.Parent
+local humanoid = nil
+local enabled = false
+
+function onActivated()
+
+	if enabled then
+		return
+	end
+
+	enabled = true
+
+	humanoid = Tool.Parent:FindFirstChild("Humanoid")
+
+	Tool.GripForward = Vector3.new(1,0,0)
+	Tool.GripRight = Vector3.new(0,-1,0)
+	Tool.GripUp = Vector3.new(0,0,1)
+	Tool.GripPos = Vector3.new(-1,-1.5,0)
+
+	Tool.Handle.Mesh.Scale = Vector3.new(1,1,1)
+
+	local amountInFront = 15
+	local lookVector = humanoid.Parent.Torso.CFrame.lookVector
+	local denom = math.abs(lookVector.x) + math.abs(lookVector.z)
+	local xFactor =  (lookVector.x/denom)
+	local zFactor = (lookVector.z/denom)
+	local posX = amountInFront * xFactor
+	local posZ = amountInFront * zFactor
+
+	local barrel = Tool.Handle:Clone()
+	barrel.CanCollide = true
+	barrel.Name = "Barrel"
+	barrel.Shape = 1
+	barrel.formFactor = 1
+	barrel.Size = Vector3.new(2,3.6,2)
+	barrel.Position = Vector3.new(posX + barrel.Position.x,humanoid.Parent.Torso.Position.y,posZ + barrel.Position.z)
+	barrel.CFrame = CFrame.new(barrel.Position,Vector3.new(humanoid.Torso.Position.x,barrel.Position.y + 10, humanoid.Torso.Position.z))
+	barrel.CFrame = barrel.CFrame * CFrame.Angles(0,0,math.pi/2)
+
+	local sound = Instance.new("Sound")
+	sound.SoundId = "http://www.roblox.com/asset/?id=31033396"
+	sound.Name = "GameOver"
+	sound.Parent = barrel
+
+	local roll = Instance.new("Sound")
+	roll.SoundId = "http://www.roblox.com/asset/?id=31036019"
+	roll.Name = "Roll"
+	roll.Looped = true
+	roll.Parent = barrel
+	roll:Play()
+
+	wait(0.6)
+	Tool.Handle.Transparency = 1
+	barrel.Parent = game.Workspace
+	barrel.Velocity = Tool.Parent.Torso.CFrame.lookVector * 80
+
+	local force = Instance.new("BodyForce")
+	force.force = Vector3.new(0,2600,0)
+	force.Parent = barrel
+
+	local script = Tool.BarrelScript:clone()
+	script.Parent = barrel
+	script.Disabled = false
+
+	wait(0.4)
+
+	Tool.Handle.Transparency = 0
+	Tool.Handle.Mesh.Scale = Vector3.new(0.45,0.45,0.45)
+	Tool.GripPos = Vector3.new(-0.4, -0.05, 0.11)
+
+	Tool.GripUp = Vector3.new(0,1,0)
+	Tool.GripRight = Vector3.new(0,0,1)
+	Tool.GripForward = Vector3.new(1,0,0)
+
+	Tool.GripRight = Vector3.new(0,0,1)
+	Tool.GripUp = Vector3.new(0,1,0)
+	Tool.GripForward = Vector3.new(1,0,0)
+
+	enabled = false
+
+end
+
+
+function onEquipped()
+	humanoid = Tool.Parent:FindFirstChild("Humanoid")
+end
+
+function onUnequipped()
+	humanoid = nil
+end
+
+Tool.Activated:connect(onActivated)
+Tool.Equipped:connect(onEquipped)
+Tool.Unequipped:connect(onUnequipped)
+
+end))
+Script5.Name = "BarrelScript"
+Script5.Parent = Tool0
+table.insert(cors,sandbox(Script5,function()
+local Barrel = script.Parent
+local force = Barrel:FindFirstChild("BodyForce")
+local touching = false
+local con = nil
+local particles = 8
+
+function killBarrel()
+
+	Barrel.Roll.Looped = false
+	Barrel.Roll:Stop()
+	Barrel:remove()
+
+end
+
+local debris = game:GetService("Debris")
+Delay(15,killBarrel)
+
+local plank = Instance.new("Part")
+plank.Name = "Plank"
+plank.Material = 512 -- wood
+plank.BrickColor = BrickColor.new("Reddish brown")
+plank.Shape = 1
+plank.formFactor = 2
+plank.Size = Vector3.new(1,0.4,4)
+plank.BottomSurface = 0
+plank.TopSurface = 0
+
+function onTouched(part)
+
+	if touching then
+		return
+	end
+	
+	touching = true
+
+	local human = part.Parent:FindFirstChild("Humanoid")
+	if human ~= nil and Barrel.Velocity.magnitude > 20 then
+
+		human:TakeDamage(25)
+		human.Jump = true
+
+		local angularVelo = Instance.new("BodyAngularVelocity")
+		angularVelo.P = 500000
+		angularVelo.angularvelocity = Vector3.new(math.random(-5,5),22,math.random(-5,5))
+		angularVelo.maxTorque = Vector3.new(angularVelo.P,angularVelo.P,angularVelo.P)
+		angularVelo.Parent = human.Parent.Torso
+		debris:AddItem(angularVelo, 1)
+
+		local force = Instance.new("BodyForce")
+		force.force = Barrel.Velocity * 50
+		force.Parent = human.Parent.Torso
+		debris:AddItem(force, 0.5)
+		Barrel.GameOver:Play()
+		con:disconnect()
+
+		for i = 1, particles do
+		
+			local clone = plank:Clone()
+			clone.Position = Barrel.Position
+			clone.Parent = game.Workspace
+			debris:AddItem(clone, 5)
+
+		end
+		killBarrel()
+
+	end
+
+	touching = false
+
+end
+
+con = Barrel.Touched:connect(onTouched)
+
+wait(1)
+while true do
+	if force.Parent ~= nil then
+		force.force = force.force * 0.5
+	end
+	wait(1)
+	force.force = force.force * 2
+	wait(3)
+end
+
+end))
+Script5.Disabled = true
+Animation6.Name = "barrelthrow"
+Animation6.Parent = Tool0
+Animation6.AnimationId = "http://www.roblox.com/Asset?ID=31020869"
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = game:GetService("Players").LocalPlayer.Backpack
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
