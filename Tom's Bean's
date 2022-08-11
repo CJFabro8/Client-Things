@@ -1,0 +1,254 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+Tool0 = Instance.new("Tool")
+LocalScript1 = Instance.new("LocalScript")
+Animation2 = Instance.new("Animation")
+Part3 = Instance.new("Part")
+SpecialMesh4 = Instance.new("SpecialMesh")
+Sound5 = Instance.new("Sound")
+Part6 = Instance.new("Part")
+SpecialMesh7 = Instance.new("SpecialMesh")
+Script8 = Instance.new("Script")
+ManualWeld9 = Instance.new("ManualWeld")
+Camera10 = Instance.new("Camera")
+Tool0.Name = "Tom's Beans"
+Tool0.Parent = mas
+Tool0.TextureId = "http://www.roblox.com/asset/?id=103838856"
+Tool0.Grip = CFrame.new(0.25, -0.200000003, 0.200000003, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Tool0.GripPos = Vector3.new(0.25, -0.20000000298023224, 0.20000000298023224)
+Tool0.ToolTip = "Beans"
+LocalScript1.Parent = Tool0
+table.insert(cors,sandbox(LocalScript1,function()
+--Made by Stickmasterluke ;D
+
+
+sp=script.Parent
+
+theface="http://www.roblox.com/asset?id=103838612"
+health=80
+textureclosed="http://www.roblox.com/asset?id=103920391"
+textureopen="http://www.roblox.com/asset?id=103920471"
+
+
+storedface=""
+local debris=game:GetService("Debris")
+check=true
+
+sp.Equipped:connect(function(mouse)
+	equipped=true
+	if mouse~=nil then 
+		mouse.Icon="rbxasset://textures\\GunCursor.png"
+		mouse.Button1Down:connect(function()
+			local chr=sp.Parent
+			if chr and check then
+				local t=chr:FindFirstChild("Torso")
+				local h=chr:FindFirstChild("Humanoid")
+				local anim=sp:FindFirstChild("Eat")
+				if anim and t and h and h.Health>0 and equipped and check then
+					mouse.Icon="rbxasset://textures\\GunWaitCursor.png"
+					check=false
+					anim2=h:LoadAnimation(anim)
+					anim2:Play()
+					local handle=sp:FindFirstChild("Handle")
+					if handle~=nil then
+						local mesh=handle:FindFirstChild("Mesh")
+						if mesh~=nil then
+							mesh.TextureId=textureopen
+						end
+					end
+					wait(2)
+					local s=sp.Handle:FindFirstChild("Sound")
+					if s~=nil and equipped and w~=nil then
+						w.C0=CFrame.new(0,-1,-.3)*CFrame.Angles(-.3,0,math.pi/4)
+						s:Play()
+					else
+						check=true
+						return
+					end
+					wait(2)
+					if h~=nil and h.Health>0 and equipped and w~=nil then
+						h:TakeDamage(-math.min(health*.5,h.MaxHealth-h.Health))
+						head=nil
+						face=nil
+						local head=h.Parent:FindFirstChild("Head")
+						if head~=nil then
+							face=head:FindFirstChild("face")
+							if face~=nil then
+								storedface=face.Texture
+								face.Texture=theface
+							end
+						end
+						w.C0=CFrame.new(0,-1,-.3)*CFrame.Angles(.3,0,math.pi/4)
+					else
+						check=true
+						return
+					end
+					wait(2)
+					local s=sp.Handle:FindFirstChild("Sound")
+					if s~=nil and equipped and w~=nil then
+						w.C0=CFrame.new(0,-1,-.3)*CFrame.Angles(-.3,0,math.pi/4)
+						s:Play()
+					else
+						check=true
+						return
+					end
+					wait(2)
+					if h~=nil and h.Health>0 and equipped and w~=nil then
+						h:TakeDamage(-math.min(health*.5,h.MaxHealth-h.Health))
+						w.C0=CFrame.new(0,-1,-.3)*CFrame.Angles(0,0,math.pi/4)
+					end
+					wait(3)
+					if mouse~=nil then
+						mouse.Icon="rbxasset://textures\\GunCursor.png"
+					end
+					if face~=nil then
+						face.Texture=storedface
+					end
+					local handle=sp:FindFirstChild("Handle")
+					if handle~=nil then
+						local mesh=handle:FindFirstChild("Mesh")
+						if mesh~=nil then
+							mesh.TextureId=textureclosed
+						end
+					end
+					check=true
+				end
+			end
+		end)
+	end
+	delay(0,function()
+		local la=sp.Parent:FindFirstChild("Left Arm")
+		if la~=nil then
+			if spoon then
+				spoon:remove()
+			end
+			spoon=Instance.new("Part")
+			spoon.FormFactor="Custom"
+			spoon.Name="Handle"
+			spoon.Size=Vector3.new(.2,.2,1.3)
+			spoon.TopSurface="Smooth"
+			spoon.BottomSurface="Smooth"
+			spoon.CanCollide=false
+			local m=Instance.new("SpecialMesh")
+			m.MeshId="http://www.roblox.com/asset?id=103919885"
+			m.TextureId=textureopen
+			m.Parent=spoon
+			w=Instance.new("Motor")
+			w.Part0=la
+			w.Part1=spoon
+			w.C0=CFrame.new(0,-1,-.3)*CFrame.Angles(0,0,math.pi/4)
+			w.Parent=spoon
+			debris:AddItem(spoon,600)
+			spoon.Parent=game.Workspace
+		end
+	end)
+end)
+
+sp.Unequipped:connect(function()
+	equipped=false
+	if anim2 then
+		anim2:Stop()
+	end
+	if face~=nil then
+		face.Texture=storedface
+	end
+	local handle=sp:FindFirstChild("Handle")
+	if handle~=nil then
+		local mesh=handle:FindFirstChild("Mesh")
+		if mesh~=nil then
+			mesh.TextureId=textureclosed
+		end
+	end
+	if spoon then
+		spoon:remove()
+	end
+end)
+
+
+end))
+Animation2.Name = "Eat"
+Animation2.Parent = Tool0
+Animation2.AnimationId = "http://www.roblox.com/Asset?ID=103822775"
+Part3.Name = "Handle"
+Part3.Parent = Tool0
+Part3.CFrame = CFrame.new(-20.810545, 0.691297054, -4.28374958, 0, -0.0727512538, 0.997350097, -0.70710659, 0.705232918, 0.0514429212, -0.70710659, -0.705232918, -0.0514428318)
+Part3.Orientation = Vector3.new(-2.950000047683716, 92.94999694824219, -45.08000183105469)
+Part3.Position = Vector3.new(-20.810544967651367, 0.6912970542907715, -4.283749580383301)
+Part3.Rotation = Vector3.new(-135, 85.83000183105469, 90)
+Part3.Velocity = Vector3.new(3.6496426778538536e-20, -0.005253962241113186, 3.664821118976775e-20)
+Part3.Size = Vector3.new(0.800000011920929, 1.100000023841858, 0.800000011920929)
+Part3.BottomSurface = Enum.SurfaceType.Smooth
+Part3.CanCollide = false
+Part3.RotVelocity = Vector3.new(2.552627671550359e-25, 8.252984535420428e-23, 2.366835151152706e-25)
+Part3.TopSurface = Enum.SurfaceType.Smooth
+Part3.FormFactor = Enum.FormFactor.Custom
+Part3.formFactor = Enum.FormFactor.Custom
+SpecialMesh4.Parent = Part3
+SpecialMesh4.MeshId = "http://www.roblox.com/asset/?id=103919751"
+SpecialMesh4.TextureId = "http://www.roblox.com/asset?id=103920391"
+SpecialMesh4.MeshType = Enum.MeshType.FileMesh
+Sound5.Parent = Part3
+Sound5.SoundId = "http://www.roblox.com/asset/?id=103842566"
+Sound5.Volume = 1
+Part6.Name = "HandleSpoon"
+Part6.Parent = Tool0
+Part6.CFrame = CFrame.new(-19.4005013, 1.52158833, -1.22495294, -4.47034836e-08, 1.49011612e-08, 1, 7.35744834e-08, 0.999999702, 2.60770321e-08, -0.999999702, -7.21774995e-08, 6.33299351e-08)
+Part6.Orientation = Vector3.new(0, 90, 0)
+Part6.Position = Vector3.new(-19.400501251220703, 1.5215883255004883, -1.2249529361724854)
+Part6.Rotation = Vector3.new(0, 90, 0)
+Part6.Velocity = Vector3.new(3.674867162892746e-20, -0.005253962241113186, 3.6532053706015136e-20)
+Part6.Size = Vector3.new(0.4000000059604645, 0.20000000298023224, 1.2999999523162842)
+Part6.BottomSurface = Enum.SurfaceType.Smooth
+Part6.CanCollide = false
+Part6.RotVelocity = Vector3.new(2.552627671550359e-25, 8.252984535420428e-23, 2.366835151152706e-25)
+Part6.TopSurface = Enum.SurfaceType.Smooth
+Part6.FormFactor = Enum.FormFactor.Custom
+Part6.formFactor = Enum.FormFactor.Custom
+SpecialMesh7.Parent = Part6
+SpecialMesh7.MeshId = "http://www.roblox.com/asset?id=103919885"
+SpecialMesh7.TextureId = "http://www.roblox.com/asset?id=103920471"
+SpecialMesh7.MeshType = Enum.MeshType.FileMesh
+Script8.Parent = Part6
+table.insert(cors,sandbox(Script8,function()
+script.Parent:remove()
+
+
+
+end))
+ManualWeld9.Parent = Part6
+ManualWeld9.C0 = CFrame.new(3.05879784, -0.830291748, -1.41004372, 0.707106709, 0.705232978, 0.0514428578, -0.707106709, 0.705232978, 0.0514429174, -5.81244114e-24, -0.0727512538, 0.997350156)
+ManualWeld9.Part0 = Part6
+ManualWeld9.Part1 = Part3
+ManualWeld9.part1 = Part3
+Camera10.Name = "ThumbnailCamera"
+Camera10.Parent = Tool0
+Camera10.CFrame = CFrame.new(-12.2105789, 5.36812067, 22.4912148, 0.872768104, 0.179362327, -0.453987867, -0, 0.930045605, 0.367444068, 0.48813504, -0.320693463, 0.811714172)
+Camera10.CoordinateFrame = CFrame.new(-12.2105789, 5.36812067, 22.4912148, 0.872768104, 0.179362327, -0.453987867, -0, 0.930045605, 0.367444068, 0.48813504, -0.320693463, 0.811714172)
+Camera10.Focus = CFrame.new(-11.3823795, 4.69780111, 21.0104237, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Camera10.focus = CFrame.new(-11.3823795, 4.69780111, 21.0104237, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = game:GetService("Players").LocalPlayer.Backpack
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
