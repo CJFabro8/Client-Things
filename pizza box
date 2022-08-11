@@ -1,0 +1,53 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+Tool0 = Instance.new("Tool")
+Part1 = Instance.new("Part")
+SpecialMesh2 = Instance.new("SpecialMesh")
+Tool0.Name = "Pizza"
+Tool0.Parent = mas
+Tool0.TextureId = "rbxassetid://1242607243"
+Tool0.CanBeDropped = false
+Tool0.Grip = CFrame.new(0, 0, 2.01296234, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Tool0.GripPos = Vector3.new(0, 0, 2.0129623413085938)
+Part1.Name = "Handle"
+Part1.Parent = Tool0
+Part1.CFrame = CFrame.new(-11, 0.199999809, -98, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Part1.Position = Vector3.new(-11, 0.19999980926513672, -98)
+Part1.Color = Color3.new(0.972549, 0.972549, 0.972549)
+Part1.Size = Vector3.new(3.2900004386901855, 0.3999999761581421, 3.2100000381469727)
+Part1.BottomSurface = Enum.SurfaceType.Smooth
+Part1.BrickColor = BrickColor.new("Institutional white")
+Part1.Material = Enum.Material.SmoothPlastic
+Part1.TopSurface = Enum.SurfaceType.Smooth
+Part1.brickColor = BrickColor.new("Institutional white")
+SpecialMesh2.Parent = Part1
+SpecialMesh2.MeshId = "rbxassetid://5324906254"
+SpecialMesh2.Scale = Vector3.new(0.25, 0.3750000298023224, 0.25)
+SpecialMesh2.TextureId = "rbxassetid://5324906424"
+SpecialMesh2.MeshType = Enum.MeshType.FileMesh
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = game:GetService("Players").LocalPlayer.Backpack
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
