@@ -1,0 +1,611 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+Tool0 = Instance.new("Tool")
+ScreenGui1 = Instance.new("ScreenGui")
+Frame2 = Instance.new("Frame")
+TextLabel3 = Instance.new("TextLabel")
+TextLabel4 = Instance.new("TextLabel")
+TextLabel5 = Instance.new("TextLabel")
+Frame6 = Instance.new("Frame")
+Frame7 = Instance.new("Frame")
+Frame8 = Instance.new("Frame")
+Frame9 = Instance.new("Frame")
+Frame10 = Instance.new("Frame")
+ImageLabel11 = Instance.new("ImageLabel")
+TextLabel12 = Instance.new("TextLabel")
+Part13 = Instance.new("Part")
+Sound14 = Instance.new("Sound")
+SpecialMesh15 = Instance.new("SpecialMesh")
+Fire16 = Instance.new("Fire")
+Animation17 = Instance.new("Animation")
+LocalScript18 = Instance.new("LocalScript")
+Tool0.Name = "AssaultRifle"
+Tool0.Parent = mas
+Tool0.TextureId = "http://www.roblox.com/asset/?id=72012711"
+Tool0.CanBeDropped = false
+Tool0.Grip = CFrame.new(0, -0.649999976, -0.300000012, 1, 0, 0, 0, 0, -1, 0, 1, 0)
+Tool0.GripForward = Vector3.new(-0, 1, -0)
+Tool0.GripPos = Vector3.new(0, -0.6499999761581421, -0.30000001192092896)
+Tool0.GripUp = Vector3.new(0, 0, 1)
+ScreenGui1.Name = "WeaponHud"
+ScreenGui1.Parent = Tool0
+Frame2.Name = "AmmoHud"
+Frame2.Parent = ScreenGui1
+Frame2.Position = UDim2.new(1, -265, 1, -60)
+Frame2.Size = UDim2.new(0, 200, 0, 50)
+Frame2.BackgroundTransparency = 1
+Frame2.BorderSizePixel = 0
+TextLabel3.Name = "ForwardSlash"
+TextLabel3.Parent = Frame2
+TextLabel3.Position = UDim2.new(0.5, 0, 0.5, 0)
+TextLabel3.BackgroundTransparency = 1
+TextLabel3.BorderSizePixel = 0
+TextLabel3.FontSize = Enum.FontSize.Size18
+TextLabel3.Text = "/"
+TextLabel3.TextColor = BrickColor.new("Really black")
+TextLabel3.TextColor3 = Color3.new(0, 0, 0)
+TextLabel3.TextSize = 18
+TextLabel3.TextStrokeColor3 = Color3.new(0, 1, 0)
+TextLabel3.TextStrokeTransparency = 0
+TextLabel4.Name = "ClipAmmo"
+TextLabel4.Parent = Frame2
+TextLabel4.Position = UDim2.new(0.449999988, 0, 0.5, 0)
+TextLabel4.BackgroundTransparency = 1
+TextLabel4.BorderSizePixel = 0
+TextLabel4.FontSize = Enum.FontSize.Size18
+TextLabel4.Text = "54"
+TextLabel4.TextColor = BrickColor.new("Really black")
+TextLabel4.TextColor3 = Color3.new(0, 0, 0)
+TextLabel4.TextSize = 18
+TextLabel4.TextStrokeColor3 = Color3.new(0, 1, 0)
+TextLabel4.TextStrokeTransparency = 0
+TextLabel4.TextXAlignment = Enum.TextXAlignment.Right
+TextLabel5.Name = "TotalAmmo"
+TextLabel5.Parent = Frame2
+TextLabel5.Position = UDim2.new(0.550000012, 0, 0.5, 0)
+TextLabel5.BackgroundTransparency = 1
+TextLabel5.BorderSizePixel = 0
+TextLabel5.FontSize = Enum.FontSize.Size18
+TextLabel5.Text = "180"
+TextLabel5.TextColor = BrickColor.new("Really black")
+TextLabel5.TextColor3 = Color3.new(0, 0, 0)
+TextLabel5.TextSize = 18
+TextLabel5.TextStrokeColor3 = Color3.new(0, 1, 0)
+TextLabel5.TextStrokeTransparency = 0
+TextLabel5.TextXAlignment = Enum.TextXAlignment.Left
+Frame6.Name = "Crosshair"
+Frame6.Parent = ScreenGui1
+Frame6.Position = UDim2.new(0, 500, 0, 500)
+Frame6.Size = UDim2.new(0, 150, 0, 150)
+Frame6.BackgroundColor = BrickColor.new("Lime green")
+Frame6.BackgroundColor3 = Color3.new(0, 1, 0)
+Frame6.BackgroundTransparency = 1
+Frame6.BorderSizePixel = 0
+Frame7.Name = "TopFrame"
+Frame7.Parent = Frame6
+Frame7.Position = UDim2.new(0, -1, -0.5, -7)
+Frame7.Size = UDim2.new(0, 2, 0, 14)
+Frame7.BackgroundColor = BrickColor.new("Really black")
+Frame7.BackgroundColor3 = Color3.new(0, 0, 0)
+Frame7.BorderColor = BrickColor.new("Lime green")
+Frame7.BorderColor3 = Color3.new(0, 1, 0)
+Frame8.Name = "BottomFrame"
+Frame8.Parent = Frame6
+Frame8.Position = UDim2.new(0, -1, 0.5, -7)
+Frame8.Size = UDim2.new(0, 2, 0, 14)
+Frame8.BackgroundColor = BrickColor.new("Really black")
+Frame8.BackgroundColor3 = Color3.new(0, 0, 0)
+Frame8.BorderColor = BrickColor.new("Lime green")
+Frame8.BorderColor3 = Color3.new(0, 1, 0)
+Frame9.Name = "RightFrame"
+Frame9.Parent = Frame6
+Frame9.Position = UDim2.new(0.5, -7, 0, -1)
+Frame9.Size = UDim2.new(0, 14, 0, 2)
+Frame9.BackgroundColor = BrickColor.new("Really black")
+Frame9.BackgroundColor3 = Color3.new(0, 0, 0)
+Frame9.BorderColor = BrickColor.new("Lime green")
+Frame9.BorderColor3 = Color3.new(0, 1, 0)
+Frame10.Name = "LeftFrame"
+Frame10.Parent = Frame6
+Frame10.Position = UDim2.new(-0.5, -7, 0, -1)
+Frame10.Size = UDim2.new(0, 14, 0, 2)
+Frame10.BackgroundColor = BrickColor.new("Really black")
+Frame10.BackgroundColor3 = Color3.new(0, 0, 0)
+Frame10.BorderColor = BrickColor.new("Lime green")
+Frame10.BorderColor3 = Color3.new(0, 1, 0)
+ImageLabel11.Name = "TargetHitImage"
+ImageLabel11.Parent = Frame6
+ImageLabel11.Position = UDim2.new(0, -25, 0, -25)
+ImageLabel11.Visible = false
+ImageLabel11.Size = UDim2.new(0, 50, 0, 50)
+ImageLabel11.BackgroundTransparency = 1
+ImageLabel11.BorderSizePixel = 0
+ImageLabel11.Image = "http://www.roblox.com/asset/?id=69368028"
+TextLabel12.Name = "ReloadingLabel"
+TextLabel12.Parent = Frame6
+TextLabel12.Position = UDim2.new(0, 20, 0, -20)
+TextLabel12.Visible = false
+TextLabel12.BackgroundTransparency = 1
+TextLabel12.BorderSizePixel = 0
+TextLabel12.Font = Enum.Font.ArialBold
+TextLabel12.FontSize = Enum.FontSize.Size18
+TextLabel12.Text = "Reloading"
+TextLabel12.TextColor = BrickColor.new("Really black")
+TextLabel12.TextColor3 = Color3.new(0, 0, 0)
+TextLabel12.TextSize = 18
+TextLabel12.TextStrokeColor3 = Color3.new(0, 1, 0)
+TextLabel12.TextStrokeTransparency = 0
+TextLabel12.TextXAlignment = Enum.TextXAlignment.Left
+TextLabel12.TextYAlignment = Enum.TextYAlignment.Bottom
+Part13.Name = "Handle"
+Part13.Parent = Tool0
+Part13.CFrame = CFrame.new(-7.29999971, 1.40000057, -3.19999981, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+Part13.Orientation = Vector3.new(-90, -90, 0)
+Part13.Position = Vector3.new(-7.299999713897705, 1.4000005722045898, -3.1999998092651367)
+Part13.Rotation = Vector3.new(-90, 0, -90)
+Part13.Color = Color3.new(0.105882, 0.164706, 0.207843)
+Part13.Size = Vector3.new(0.4000000059604645, 3.4000000953674316, 0.800000011920929)
+Part13.BrickColor = BrickColor.new("Black")
+Part13.brickColor = BrickColor.new("Black")
+Part13.FormFactor = Enum.FormFactor.Custom
+Part13.formFactor = Enum.FormFactor.Custom
+Sound14.Name = "FireSound"
+Sound14.Parent = Part13
+Sound14.EmitterSize = 0
+Sound14.MinDistance = 0
+Sound14.Pitch = 0.699999988079071
+Sound14.PlaybackSpeed = 0.699999988079071
+Sound14.SoundId = "http://www.roblox.com/asset/?id=27127089"
+Sound14.Volume = 1
+SpecialMesh15.Parent = Part13
+SpecialMesh15.MeshId = "http://www.roblox.com/asset/?id=72012671"
+SpecialMesh15.VertexColor = Vector3.new(2, 2, 2)
+SpecialMesh15.TextureId = "http://www.roblox.com/asset/?id=72012605"
+SpecialMesh15.MeshType = Enum.MeshType.FileMesh
+Fire16.Parent = Part13
+Fire16.Color = Color3.new(0.145098, 0.145098, 0.164706)
+Fire16.Enabled = false
+Fire16.Size = 2
+Fire16.Heat = 0
+Fire16.SecondaryColor = Color3.new(0, 0, 0)
+Fire16.size = 2
+Animation17.Name = "Recoil"
+Animation17.Parent = Tool0
+Animation17.AnimationId = "http://www.roblox.com/Asset?ID=89289443"
+LocalScript18.Name = "AssaultRifleScript"
+LocalScript18.Parent = Tool0
+table.insert(cors,sandbox(LocalScript18,function()
+--------------------- TEMPLATE ASSAULT RIFLE WEAPON ---------------------------
+-- Waits for the child of the specified parent
+local function WaitForChild(parent, childName)
+	while not parent:FindFirstChild(childName) do parent.ChildAdded:wait() end
+	return parent[childName]
+end
+
+----- MAGIC NUMBERS ABOUT THE TOOL -----
+-- How much damage a bullet does
+local Damage = 10
+-- How many times per second the gun can fire
+local FireRate = 5 / 30
+-- The maximum distance the can can shoot, this value should never go above 1000
+local Range = 400
+-- In radians the minimum accuracy penalty
+local MinSpread = 0.01
+-- In radian the maximum accuracy penalty
+local MaxSpread = 0.1
+-- Number of bullets in a clip
+local ClipSize = 30
+-- DefaultValue for spare ammo
+local SpareAmmo = 600
+-- The amount the aim will increase or decrease by
+-- decreases this number reduces the speed that recoil takes effect
+local AimInaccuracyStepAmount = 0.0125
+-- Time it takes to reload weapon
+local ReloadTime = 3
+----------------------------------------
+
+-- Colors
+local FriendlyReticleColor = Color3.new(0, 1, 0)
+local EnemyReticleColor	= Color3.new(1, 0, 0)
+local NeutralReticleColor	= Color3.new(1, 1, 1)
+
+local Spread = MinSpread
+local AmmoInClip = ClipSize
+
+local Tool = script.Parent
+local Handle = WaitForChild(Tool, 'Handle')
+local WeaponGui = nil
+
+local LeftButtonDown
+local Reloading = false
+local IsShooting = false
+
+-- Player specific convenience variables
+local MyPlayer = nil
+local MyCharacter = nil
+local MyHumanoid = nil
+local MyTorso = nil
+local MyMouse = nil
+
+local RecoilAnim
+local RecoilTrack = nil
+
+local IconURL = Tool.TextureId  -- URL to the weapon icon asset
+
+local DebrisService = game:GetService('Debris')
+local PlayersService = game:GetService('Players')
+
+
+local FireSound
+
+local OnFireConnection = nil
+local OnReloadConnection = nil
+
+local DecreasedAimLastShot = false
+local LastSpreadUpdate = time()
+
+-- this is a dummy object that holds the flash made when the gun is fired
+local FlashHolder = nil
+
+
+local WorldToCellFunction = Workspace.Terrain.WorldToCellPreferSolid
+local GetCellFunction = Workspace.Terrain.GetCell
+
+function RayIgnoreCheck(hit, pos)
+	if hit then
+		if hit.Transparency >= 1 or string.lower(hit.Name) == "water" or
+				hit.Name == "Effect" or hit.Name == "Rocket" or hit.Name == "Bullet" or
+				hit.Name == "Handle" or hit:IsDescendantOf(MyCharacter) then
+			return true
+		elseif hit:IsA('Terrain') and pos then
+			local cellPos = WorldToCellFunction(Workspace.Terrain, pos)
+			if cellPos then
+				local cellMat = GetCellFunction(Workspace.Terrain, cellPos.x, cellPos.y, cellPos.z)
+				if cellMat and cellMat == Enum.CellMaterial.Water then
+					return true
+				end
+			end
+		end
+	end
+	return false
+end
+
+-- @preconditions: vec should be a unit vector, and 0 < rayLength <= 1000
+function RayCast(startPos, vec, rayLength)
+	local hitObject, hitPos = game.Workspace:FindPartOnRay(Ray.new(startPos + (vec * .01), vec * rayLength), Handle)
+	if hitObject and hitPos then
+		local distance = rayLength - (hitPos - startPos).magnitude
+		if RayIgnoreCheck(hitObject, hitPos) and distance > 0 then
+			-- there is a chance here for potential infinite recursion
+			return RayCast(hitPos, vec, distance)
+		end
+	end
+	return hitObject, hitPos
+end
+
+
+
+function TagHumanoid(humanoid, player)
+	-- Add more tags here to customize what tags are available.
+	while humanoid:FindFirstChild('creator') do
+		humanoid:FindFirstChild('creator'):Destroy()
+	end 
+	local creatorTag = Instance.new("ObjectValue")
+	creatorTag.Value = player
+	creatorTag.Name = "creator"
+	creatorTag.Parent = humanoid
+	DebrisService:AddItem(creatorTag, 1.5)
+
+	local weaponIconTag = Instance.new("StringValue")
+	weaponIconTag.Value = IconURL
+	weaponIconTag.Name = "icon"
+	weaponIconTag.Parent = creatorTag
+end
+
+local function CreateFlash()
+	if FlashHolder then
+		local flash = Instance.new('Fire', FlashHolder)
+		flash.Color = Color3.new(1, 140 / 255, 0)
+		flash.SecondaryColor = Color3.new(1, 0, 0)
+		flash.Size = 0.3
+		DebrisService:AddItem(flash, FireRate / 1.5)
+	else
+		FlashHolder = Instance.new("Part", Tool)
+		FlashHolder.Transparency = 1
+		FlashHolder.CanCollide= false
+		FlashHolder.Size = Vector3.new(1, 1, 1)
+		FlashHolder.Position = Tool.Handle.Position
+		local Weld = Instance.new("ManualWeld")
+		Weld.C0 = CFrame.new(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+		Weld.C1 = CFrame.new(0, 2.2, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0)
+		Weld.Part0 = FlashHolder
+		Weld.Part1 = Tool.Handle
+		Weld.Parent = FlashHolder
+	end
+end
+
+local function CreateBullet(bulletPos)
+	local bullet = Instance.new('Part', Workspace)
+	bullet.FormFactor = Enum.FormFactor.Custom
+	bullet.Size = Vector3.new(0.1, 0.1, 0.1)
+	bullet.BrickColor = MyPlayer.TeamColor
+	bullet.Shape = Enum.PartType.Ball
+	bullet.CanCollide = false
+	bullet.CFrame = CFrame.new(bulletPos)
+	bullet.Anchored = true
+	bullet.TopSurface = Enum.SurfaceType.Smooth
+	bullet.BottomSurface = Enum.SurfaceType.Smooth
+	bullet.Name = 'Bullet'
+	DebrisService:AddItem(bullet, 2.5)
+	local fire = Instance.new("Fire", bullet)
+	fire.Color = Color3.new(MyPlayer.TeamColor.r, MyPlayer.TeamColor.g, MyPlayer.TeamColor.b)
+	fire.SecondaryColor = Color3.new(MyPlayer.TeamColor.r, MyPlayer.TeamColor.g, MyPlayer.TeamColor.b)
+	fire.Size = 5
+	fire.Heat = 0
+	DebrisService:AddItem(fire, 0.2)
+	return bullet
+end
+
+local function Reload()
+	if not Reloading then
+		Reloading = true
+		-- Don't reload if you are already full or have no extra ammo
+		if AmmoInClip ~= ClipSize and SpareAmmo > 0 then
+			if RecoilTrack then
+				RecoilTrack:Stop()
+			end
+			if WeaponGui and WeaponGui:FindFirstChild('Crosshair') then
+				if WeaponGui.Crosshair:FindFirstChild('ReloadingLabel') then
+					WeaponGui.Crosshair.ReloadingLabel.Visible = true
+				end
+			end
+			wait(ReloadTime)
+			-- Only use as much ammo as you have
+			local ammoToUse = math.min(ClipSize - AmmoInClip, SpareAmmo)
+			AmmoInClip = AmmoInClip + ammoToUse
+			SpareAmmo = SpareAmmo - ammoToUse
+			UpdateAmmo(AmmoInClip)
+		end
+		Reloading = false
+	end
+end
+
+function OnFire()
+	if IsShooting then return end
+	if MyHumanoid and MyHumanoid.Health > 0 then
+		if RecoilTrack and AmmoInClip > 0 then
+			RecoilTrack:Play()
+		end
+		IsShooting = true
+		while LeftButtonDown and AmmoInClip > 0 and not Reloading do
+			if Spread and not DecreasedAimLastShot then
+				Spread = math.min(MaxSpread, Spread + AimInaccuracyStepAmount)
+				UpdateCrosshair(Spread)
+			end
+			DecreasedAimLastShot = not DecreasedAimLastShot
+			if Handle:FindFirstChild('FireSound') then
+				Handle.FireSound:Play()
+			end
+			CreateFlash()
+			if MyMouse then
+				local targetPoint = MyMouse.Hit.p
+				local shootDirection = (targetPoint - Handle.Position).unit
+				-- Adjust the shoot direction randomly off by a little bit to account for recoil
+				shootDirection = CFrame.Angles((0.5 - math.random()) * 2 * Spread,
+																(0.5 - math.random()) * 2 * Spread,
+																(0.5 - math.random()) * 2 * Spread) * shootDirection
+				local hitObject, bulletPos = RayCast(Handle.Position, shootDirection, Range)
+				local bullet
+				-- Create a bullet here
+				if hitObject then
+					bullet = CreateBullet(bulletPos)
+				end
+				if hitObject and hitObject.Parent then
+					local hitHumanoid = hitObject.Parent:FindFirstChild("Humanoid")
+					if hitHumanoid then
+						local hitPlayer = game.Players:GetPlayerFromCharacter(hitHumanoid.Parent)
+						if MyPlayer.Neutral or (hitPlayer and hitPlayer.TeamColor ~= MyPlayer.TeamColor) then
+							TagHumanoid(hitHumanoid, MyPlayer)
+							hitHumanoid:TakeDamage(Damage)
+							if bullet then
+								bullet:Destroy()
+								bullet = nil
+								--bullet.Transparency = 1
+							end
+							Spawn(UpdateTargetHit)
+						end
+					end
+				end
+	
+				AmmoInClip = AmmoInClip - 1
+				UpdateAmmo(AmmoInClip)
+			end
+			wait(FireRate)
+		end		
+		IsShooting = false
+		if AmmoInClip == 0 then
+			Reload()
+		end
+		if RecoilTrack then
+			RecoilTrack:Stop()
+		end
+	end
+end
+
+local TargetHits = 0
+function UpdateTargetHit()
+	TargetHits = TargetHits + 1
+	if WeaponGui and WeaponGui:FindFirstChild('Crosshair') and WeaponGui.Crosshair:FindFirstChild('TargetHitImage') then
+		WeaponGui.Crosshair.TargetHitImage.Visible = true
+	end
+	wait(0.5)
+	TargetHits = TargetHits - 1
+	if TargetHits == 0 and WeaponGui and WeaponGui:FindFirstChild('Crosshair') and WeaponGui.Crosshair:FindFirstChild('TargetHitImage') then
+		WeaponGui.Crosshair.TargetHitImage.Visible = false
+	end
+end
+
+function UpdateCrosshair(value, mouse)
+	if WeaponGui then
+		local absoluteY = 650
+		WeaponGui.Crosshair:TweenSize(
+			UDim2.new(0, value * absoluteY * 2 + 23, 0, value * absoluteY * 2 + 23),
+			Enum.EasingDirection.Out,
+			Enum.EasingStyle.Linear,
+			0.33)
+	end
+end
+
+function UpdateAmmo(value)
+	if WeaponGui and WeaponGui:FindFirstChild('AmmoHud') and WeaponGui.AmmoHud:FindFirstChild('ClipAmmo') then
+		WeaponGui.AmmoHud.ClipAmmo.Text = AmmoInClip
+		if value > 0 and WeaponGui:FindFirstChild('Crosshair') and WeaponGui.Crosshair:FindFirstChild('ReloadingLabel') then
+			WeaponGui.Crosshair.ReloadingLabel.Visible = false
+		end
+	end
+	if WeaponGui and WeaponGui:FindFirstChild('AmmoHud') and WeaponGui.AmmoHud:FindFirstChild('TotalAmmo') then
+		WeaponGui.AmmoHud.TotalAmmo.Text = SpareAmmo
+	end
+end
+
+
+function OnMouseDown()
+	LeftButtonDown = true
+	OnFire()
+end
+
+function OnMouseUp()
+	LeftButtonDown = false
+end
+
+function OnKeyDown(key)
+	if string.lower(key) == 'r' then
+		Reload()
+	end
+end
+
+
+function OnEquipped(mouse)
+	RecoilAnim = WaitForChild(Tool, 'Recoil')
+	FireSound  = WaitForChild(Handle, 'FireSound')
+
+	MyCharacter = Tool.Parent
+	MyPlayer = game:GetService('Players'):GetPlayerFromCharacter(MyCharacter)
+	MyHumanoid = MyCharacter:FindFirstChild('Humanoid')
+	MyTorso = MyCharacter:FindFirstChild('Torso')
+	MyMouse = mouse
+	WeaponGui = WaitForChild(Tool, 'WeaponHud'):Clone()
+	if WeaponGui and MyPlayer then
+		WeaponGui.Parent = MyPlayer.PlayerGui
+		UpdateAmmo(AmmoInClip)
+	end
+	if RecoilAnim then
+		RecoilTrack = MyHumanoid:LoadAnimation(RecoilAnim)
+	end
+
+	if MyMouse then
+		-- Disable mouse icon
+		MyMouse.Icon = "http://www.roblox.com/asset/?id=18662154"
+		MyMouse.Button1Down:connect(OnMouseDown)
+		MyMouse.Button1Up:connect(OnMouseUp)
+		MyMouse.KeyDown:connect(OnKeyDown)
+	end
+end
+
+
+-- Unequip logic here
+function OnUnequipped()
+	LeftButtonDown = false
+	Reloading = false
+	MyCharacter = nil
+	MyHumanoid = nil
+	MyTorso = nil
+	MyPlayer = nil
+	MyMouse = nil
+	if OnFireConnection then
+		OnFireConnection:disconnect()
+	end
+	if OnReloadConnection then
+		OnReloadConnection:disconnect()
+	end
+	if FlashHolder then
+		FlashHolder = nil
+	end
+	if WeaponGui then
+		WeaponGui.Parent = nil
+		WeaponGui = nil
+	end
+	if RecoilTrack then
+		RecoilTrack:Stop()
+	end
+end
+
+local function SetReticleColor(color)
+	if WeaponGui and WeaponGui:FindFirstChild('Crosshair') then
+		for _, line in pairs(WeaponGui.Crosshair:GetChildren()) do
+			if line:IsA('Frame') then
+				line.BorderColor3 = color
+			end
+		end
+	end
+end
+
+
+Tool.Equipped:connect(OnEquipped)
+Tool.Unequipped:connect(OnUnequipped)
+
+while true do
+	wait(0.033)
+	if WeaponGui and WeaponGui:FindFirstChild('Crosshair') and MyMouse then
+		WeaponGui.Crosshair.Position = UDim2.new(0, MyMouse.X, 0, MyMouse.Y)
+		SetReticleColor(NeutralReticleColor)
+
+		local target = MyMouse.Target
+		if target and target.Parent then
+			local player = PlayersService:GetPlayerFromCharacter(target.Parent)
+			if player then
+				if MyPlayer.Neutral or player.TeamColor ~= MyPlayer.TeamColor then
+					SetReticleColor(EnemyReticleColor)
+				else
+					SetReticleColor(FriendlyReticleColor)
+				end
+			end
+		end
+	end
+	if Spread and not IsShooting then
+		local currTime = time()
+		if currTime - LastSpreadUpdate > FireRate * 2 then
+			LastSpreadUpdate = currTime
+			Spread = math.max(MinSpread, Spread - AimInaccuracyStepAmount)
+			UpdateCrosshair(Spread, MyMouse)
+		end
+	end
+end
+
+end))
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = game:GetService("Players").LocalPlayer.Backpack
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
