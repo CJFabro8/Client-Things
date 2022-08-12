@@ -1,0 +1,44 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+Tool0 = Instance.new("Tool")
+Part1 = Instance.new("Part")
+Tool0.Name = "Block Head"
+Tool0.Parent = mas
+Tool0.Grip = CFrame.new(1.78149509, -2.77775955, -1.48911285, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Tool0.GripPos = Vector3.new(1.7814950942993164, -2.777759552001953, -1.4891128540039062)
+Part1.Name = "Handle"
+Part1.Parent = Tool0
+Part1.CFrame = CFrame.new(24.6700001, 2.30092859, 55.6792107, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Part1.Position = Vector3.new(24.670000076293945, 2.3009285926818848, 55.6792106628418)
+Part1.Color = Color3.new(0.121569, 0.501961, 0.113725)
+Part1.Size = Vector3.new(4, 4.601849555969238, 4.218421936035156)
+Part1.BottomSurface = Enum.SurfaceType.Smooth
+Part1.BrickColor = BrickColor.new("Forest green")
+Part1.TopSurface = Enum.SurfaceType.Smooth
+Part1.brickColor = BrickColor.new("Forest green")
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = game:GetService("Players").LocalPlayer.Backpack
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
