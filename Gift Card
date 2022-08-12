@@ -1,0 +1,134 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+Tool0 = Instance.new("Tool")
+Part1 = Instance.new("Part")
+Sound2 = Instance.new("Sound")
+SpecialMesh3 = Instance.new("SpecialMesh")
+ParticleEmitter4 = Instance.new("ParticleEmitter")
+ParticleEmitter5 = Instance.new("ParticleEmitter")
+Script6 = Instance.new("Script")
+Tool0.Name = "GearCard"
+Tool0.Parent = mas
+Tool0.TextureId = "http://www.roblox.com/asset/?id="
+Tool0.CanBeDropped = false
+Tool0.Grip = CFrame.new(0.707101822, 0.00264840783, 0, 0.999992967, -0.00374541432, 0, 0.00374541432, 0.999992967, 0, 0, 0, 1)
+Tool0.GripPos = Vector3.new(0.7071018218994141, 0.0026484078262001276, 0)
+Tool0.GripRight = Vector3.new(0.9999929666519165, 0.0037454143166542053, 0)
+Tool0.GripUp = Vector3.new(-0.0037454143166542053, 0.9999929666519165, 0)
+Tool0.ToolTip = "Random Gear time!"
+Part1.Name = "Handle"
+Part1.Parent = Tool0
+Part1.CFrame = CFrame.new(6.55151367, 0.600000024, 43.5291748, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Part1.Position = Vector3.new(6.551513671875, 0.6000000238418579, 43.5291748046875)
+Part1.Color = Color3.new(0, 0.560784, 0.611765)
+Part1.Size = Vector3.new(1, 1.2000000476837158, 1)
+Part1.BrickColor = BrickColor.new("Bright bluish green")
+Part1.brickColor = BrickColor.new("Bright bluish green")
+Sound2.Name = "MagicSound"
+Sound2.Parent = Part1
+Sound2.SoundId = "http://www.roblox.com/asset/?id=35571070"
+Sound2.Volume = 1
+SpecialMesh3.Parent = Part1
+SpecialMesh3.MeshId = "http://www.roblox.com/asset/?id= 35577280"
+SpecialMesh3.Scale = Vector3.new(2.200000047683716, 2.200000047683716, 2.200000047683716)
+SpecialMesh3.TextureId = "http://www.roblox.com/asset/?id=51513683"
+SpecialMesh3.MeshType = Enum.MeshType.FileMesh
+ParticleEmitter4.Name = "Aesthetic"
+ParticleEmitter4.Parent = mas
+ParticleEmitter4.Speed = NumberRange.new(20, 20)
+ParticleEmitter4.Color = ColorSequence.new(Color3.new(1, 0, 0),Color3.new(1, 0.635294, 0),Color3.new(0.866667, 1, 0),Color3.new(0.0470588, 1, 0),Color3.new(0, 1, 0.968627),Color3.new(0.0666667, 0, 1),Color3.new(1, 0, 0.952941))
+ParticleEmitter4.Enabled = false
+ParticleEmitter4.LightEmission = 1
+ParticleEmitter4.LightInfluence = 1
+ParticleEmitter4.Acceleration = Vector3.new(0, -40, 0)
+ParticleEmitter4.Lifetime = NumberRange.new(1, 1)
+ParticleEmitter4.Rate = 30
+ParticleEmitter4.SpreadAngle = Vector2.new(15, 15)
+ParticleEmitter4.VelocitySpread = 15
+ParticleEmitter5.Name = "Activated"
+ParticleEmitter5.Parent = mas
+ParticleEmitter5.Speed = NumberRange.new(0, 0)
+ParticleEmitter5.Color = ColorSequence.new(Color3.new(1, 0, 0.901961),Color3.new(1, 0, 0.901961))
+ParticleEmitter5.Enabled = false
+ParticleEmitter5.LightEmission = 1
+ParticleEmitter5.LightInfluence = 1
+ParticleEmitter5.Texture = "rbxassetid://4885490162"
+ParticleEmitter5.Transparency = NumberSequence.new(0,1)
+ParticleEmitter5.Size = NumberSequence.new(0,5)
+ParticleEmitter5.Lifetime = NumberRange.new(0.5, 0.5)
+ParticleEmitter5.Rate = 600
+Script6.Parent = Tool0
+table.insert(cors,sandbox(Script6,function()
+--Item Giver Script By Tenbelow--
+
+local Tool = script.Parent
+
+local gears = game.ServerStorage.Gears:GetChildren()
+
+
+
+function onActivated()
+	Tool.Handle.ParticleHolder.Activated.Color = ColorSequence.new(Color3.fromRGB(math.random(0,255),math.random(0,255),math.random(0,255)))
+	Tool.Handle.ParticleHolder.Activated.Enabled = true
+	magicSound:Play()
+	wait(.05)
+	Tool.Handle.ParticleHolder.Activated.Enabled = false
+	magicSound = Tool.Handle:FindFirstChild("MagicSound")
+	if magicSound == nil then return end
+	wait(.5)
+
+	local whichNum = gears[math.random(1,#gears)]
+
+	print("Picked: ")
+	print(whichNum)
+	local root = whichNum:Clone()
+	Tool.Parent.Humanoid:UnequipTools()
+	root.Parent = Tool.Parent
+	wait()
+	script.Parent:Destroy()
+end
+
+function onEquipped()
+	magicSound = Tool.Handle:FindFirstChild("MagicSound")
+	if magicSound == nil then
+		magicSound = Instance.new("Sound")
+		magicSound.Parent = Tool.Handle
+		magicSound.Volume = 1
+		magicSound.SoundId = "http://www.roblox.com/asset/?id=35571070"
+		magicSound.Name = "MagicSound"
+	end
+	Tool.Handle.ParticleHolder.Aesthetic.Enabled = true
+	wait(.5)
+	Tool.Handle.ParticleHolder.Aesthetic.Enabled = false
+end
+
+Tool.Activated:connect(onActivated)
+Tool.Equipped:connect(onEquipped)
+
+end))
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = game:GetService("Players").LocalPlayer.Backpack
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
