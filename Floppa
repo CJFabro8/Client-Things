@@ -1,0 +1,174 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+Tool0 = Instance.new("Tool")
+Part1 = Instance.new("Part")
+Decal2 = Instance.new("Decal")
+Decal3 = Instance.new("Decal")
+Decal4 = Instance.new("Decal")
+Decal5 = Instance.new("Decal")
+Decal6 = Instance.new("Decal")
+Decal7 = Instance.new("Decal")
+WeldConstraint8 = Instance.new("WeldConstraint")
+Weld9 = Instance.new("Weld")
+Weld10 = Instance.new("Weld")
+Part11 = Instance.new("Part")
+Weld12 = Instance.new("Weld")
+WeldConstraint13 = Instance.new("WeldConstraint")
+WeldConstraint14 = Instance.new("WeldConstraint")
+Sound15 = Instance.new("Sound")
+Sound16 = Instance.new("Sound")
+Part17 = Instance.new("Part")
+SpecialMesh18 = Instance.new("SpecialMesh")
+WeldConstraint19 = Instance.new("WeldConstraint")
+Script20 = Instance.new("Script")
+Tool0.Name = "Floppa"
+Tool0.Parent = mas
+Part1.Name = "Floppa cube"
+Part1.Parent = Tool0
+Part1.CFrame = CFrame.new(-2.94506931, 0.999999881, -47.8634033, 1, 7.87137555e-09, 3.02998127e-15, -7.87137555e-09, 1, -4.1444258e-16, -3.02998127e-15, 4.14442554e-16, 1)
+Part1.Position = Vector3.new(-2.9450693130493164, 0.9999998807907104, -47.8634033203125)
+Part1.Size = Vector3.new(2, 2, 2)
+Part1.BottomSurface = Enum.SurfaceType.Smooth
+Part1.TopSurface = Enum.SurfaceType.Smooth
+Decal2.Parent = Part1
+Decal2.Texture = "rbxassetid://6787972353"
+Decal2.Face = Enum.NormalId.Back
+Decal3.Parent = Part1
+Decal3.Texture = "rbxassetid://6787972241"
+Decal3.Face = Enum.NormalId.Bottom
+Decal4.Parent = Part1
+Decal4.Texture = "rbxassetid://6787971998"
+Decal5.Parent = Part1
+Decal5.Texture = "rbxassetid://6787971883"
+Decal5.Face = Enum.NormalId.Left
+Decal6.Parent = Part1
+Decal6.Texture = "rbxassetid://6787971777"
+Decal6.Face = Enum.NormalId.Right
+Decal7.Parent = Part1
+Decal7.Texture = "rbxassetid://6787971619"
+Decal7.Face = Enum.NormalId.Top
+WeldConstraint8.Parent = Part1
+WeldConstraint8.Part0 = Part1
+WeldConstraint8.Part1 = Part17
+Weld9.Parent = Part1
+Weld9.C0 = CFrame.new(0, -1, 0, 1, 0, 0, -2.51150606e-28, 0, -1, 0, 1, 0)
+Weld9.C1 = CFrame.new(0.153053284, 0.397405386, -0.543628693, 1, 0, -1.25575303e-28, -1.25575303e-28, 0, -1, 0, 1, 0)
+Weld9.Part0 = Part1
+Weld9.Part1 = Part1
+Weld9.part1 = Part1
+Weld10.Parent = Part1
+Weld10.C0 = CFrame.new(0, -1, 0, 1, 0, 0, -1.00460242e-27, 0, -1, 0, 1, 0)
+Weld10.C1 = CFrame.new(4.37762451, 8, 13.4684448, 1, 0, -5.02301211e-28, -5.02301211e-28, 0, -1, 0, 1, 0)
+Weld10.Part0 = Part1
+Weld10.Part1 = Part1
+Weld10.part1 = Part1
+Part11.Name = "Handle"
+Part11.Parent = Tool0
+Part11.CFrame = CFrame.new(-2.97219944, 0.871180832, -47.0742416, 1, 7.87137555e-09, 3.02998127e-15, -7.87137555e-09, 1, -4.1444258e-16, -3.02998127e-15, 4.14442554e-16, 1)
+Part11.Position = Vector3.new(-2.9721994400024414, 0.8711808323860168, -47.074241638183594)
+Part11.Transparency = 1
+Part11.Size = Vector3.new(1.639190673828125, 0.28999999165534973, 0.3843975067138672)
+Part11.BottomSurface = Enum.SurfaceType.Smooth
+Part11.TopSurface = Enum.SurfaceType.Smooth
+Weld12.Parent = Part11
+Weld12.C0 = CFrame.new(0, -0.144999996, 0, 1, 0, 0, -3.01380742e-29, 0, -1, 0, 1, 0)
+Weld12.C1 = CFrame.new(-81.2617188, 8, 26.2423496, 1, 0, -1.50690371e-29, -1.50690371e-29, 0, -1, 0, 1, 0)
+Weld12.Part0 = Part11
+Weld12.Part1 = Part11
+Weld12.part1 = Part11
+WeldConstraint13.Parent = Part11
+WeldConstraint13.Part0 = Part11
+WeldConstraint13.Part1 = Part1
+WeldConstraint14.Parent = Part11
+WeldConstraint14.Part0 = Part11
+WeldConstraint14.Part1 = Part17
+Sound15.Name = "Purr"
+Sound15.Parent = Part11
+Sound15.SoundId = "rbxassetid://9113984339"
+Sound16.Name = "Meow"
+Sound16.Parent = Part11
+Sound16.SoundId = "rbxassetid://8772968188"
+Part17.Name = "Ears"
+Part17.Parent = Tool0
+Part17.CFrame = CFrame.new(-2.97681522, 2.60812807, -47.9900818, 1, -1.25575325e-30, 0, -1.25575325e-30, 1, 0, 0, 0, 1)
+Part17.Position = Vector3.new(-2.9768152236938477, 2.608128070831299, -47.990081787109375)
+Part17.Size = Vector3.new(1.5881553888320923, 1.2162573337554932, 0.2892611026763916)
+Part17.BottomSurface = Enum.SurfaceType.Smooth
+Part17.CanCollide = false
+Part17.Material = Enum.Material.Sand
+Part17.TopSurface = Enum.SurfaceType.Smooth
+SpecialMesh18.Name = "SpecialMesh"
+SpecialMesh18.Parent = Part17
+SpecialMesh18.MeshId = "rbxassetid://6100557436"
+SpecialMesh18.Scale = Vector3.new(1.5881551504135132, 1.216257095336914, 0.289261132478714)
+SpecialMesh18.TextureId = "rbxassetid://6100557520"
+SpecialMesh18.MeshType = Enum.MeshType.FileMesh
+WeldConstraint19.Parent = Part17
+WeldConstraint19.Part0 = Part17
+WeldConstraint19.Part1 = Part1
+Script20.Name = "MeowScript"
+Script20.Parent = Tool0
+table.insert(cors,sandbox(Script20,function()
+local debounce = false
+
+local Tool = script.Parent;
+
+enabled = true
+
+
+
+
+function onActivated()
+	if not enabled  then
+		return
+	end
+	
+	if debounce then 
+		return 
+	end
+	debounce = true
+
+	enabled = false
+	
+	Tool.Handle.Meow:Play()
+	wait(.4)
+	debounce = false
+
+	enabled = true
+
+end
+
+function onEquipped()
+	Tool.Handle.Purr:play()
+end
+
+script.Parent.Activated:connect(onActivated)
+script.Parent.Equipped:connect(onEquipped)
+
+end))
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = game:GetService("Players").LocalPlayer.Backpack
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
