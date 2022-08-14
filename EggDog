@@ -1,0 +1,46 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+Tool0 = Instance.new("Tool")
+Part1 = Instance.new("Part")
+SpecialMesh2 = Instance.new("SpecialMesh")
+Tool0.Parent = mas
+Tool0.Grip = CFrame.new(1.50004649, -3.04515457, -1.65283966, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Tool0.GripPos = Vector3.new(1.5000464916229248, -3.045154571533203, -1.6528396606445312)
+Part1.Name = "Handle"
+Part1.Parent = Tool0
+Part1.CFrame = CFrame.new(10.7921314, 2.97263932, -38.4138412, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Part1.Position = Vector3.new(10.792131423950195, 2.972639322280884, -38.413841247558594)
+Part1.Size = Vector3.new(0.2568702697753906, 0.3442554473876953, 0.2543067932128906)
+Part1.BottomSurface = Enum.SurfaceType.Smooth
+Part1.TopSurface = Enum.SurfaceType.Smooth
+SpecialMesh2.Parent = Part1
+SpecialMesh2.MeshId = "rbxassetid://3142513417"
+SpecialMesh2.Scale = Vector3.new(0.06421756744384766, 0.060916636139154434, 0.07056006044149399)
+SpecialMesh2.TextureId = "rbxassetid://3142513433"
+SpecialMesh2.MeshType = Enum.MeshType.FileMesh
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = game:GetService("Players").LocalPlayer.Backpack
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
