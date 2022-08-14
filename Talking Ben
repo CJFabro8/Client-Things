@@ -1,0 +1,60 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+Tool0 = Instance.new("Tool")
+Part1 = Instance.new("Part")
+SpecialMesh2 = Instance.new("SpecialMesh")
+Sound3 = Instance.new("Sound")
+Script4 = Instance.new("Script")
+Tool0.Name = "Talking ben"
+Tool0.Parent = mas
+Tool0.Grip = CFrame.new(0, 0, 0.678157806, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Tool0.GripPos = Vector3.new(0, 0, 0.6781578063964844)
+Part1.Name = "Handle"
+Part1.Parent = Tool0
+Part1.CFrame = CFrame.new(112.326248, 6.50851679, -11.0780315, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Part1.Position = Vector3.new(112.32624816894531, 6.508516788482666, -11.078031539916992)
+Part1.Size = Vector3.new(1.448211669921875, 0.4242725372314453, 0.9772138595581055)
+Part1.BottomSurface = Enum.SurfaceType.Smooth
+Part1.TopSurface = Enum.SurfaceType.Smooth
+SpecialMesh2.Parent = Part1
+SpecialMesh2.MeshId = "rbxassetid://9055400204"
+SpecialMesh2.Scale = Vector3.new(0.36205291748046875, 0.4242725372314453, 0.48860692977905273)
+SpecialMesh2.TextureId = "http://www.roblox.com/asset/?id=8975425666"
+SpecialMesh2.MeshType = Enum.MeshType.FileMesh
+Sound3.Name = "ben"
+Sound3.Parent = Tool0
+Sound3.SoundId = "rbxassetid://8994282852"
+Script4.Parent = Sound3
+table.insert(cors,sandbox(Script4,function()
+function Talking()
+	script.Parent:Play(ben)
+end
+
+script.Parent.Parent.Activated:Connect(Talking)
+end))
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = game:GetService("Players").LocalPlayer.Backpack
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
