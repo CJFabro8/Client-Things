@@ -1,0 +1,63 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+Tool0 = Instance.new("Tool")
+Sound1 = Instance.new("Sound")
+Script2 = Instance.new("Script")
+Part3 = Instance.new("Part")
+SpecialMesh4 = Instance.new("SpecialMesh")
+Tool0.Name = "Among Us"
+Tool0.Parent = mas
+Tool0.Grip = CFrame.new(0, 0, 1.06970787, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Tool0.GripPos = Vector3.new(0, 0, 1.0697078704833984)
+Sound1.Name = "ben"
+Sound1.Parent = Tool0
+Sound1.SoundId = "rbxassetid://6823184374"
+Script2.Parent = Sound1
+table.insert(cors,sandbox(Script2,function()
+function Talking()
+	script.Parent:Play(ben)
+end
+
+script.Parent.Parent.Activated:Connect(Talking)
+end))
+Part3.Name = "Handle"
+Part3.Parent = Tool0
+Part3.CFrame = CFrame.new(-52.3665085, 43.622509, 25.9114895, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Part3.Position = Vector3.new(-52.36650848388672, 43.62250900268555, 25.911489486694336)
+Part3.Color = Color3.new(0.0156863, 0.686275, 0.92549)
+Part3.Size = Vector3.new(0.14595413208007812, 0.1599999964237213, 0.17702102661132812)
+Part3.BottomSurface = Enum.SurfaceType.Smooth
+Part3.BrickColor = BrickColor.new("Cyan")
+Part3.TopSurface = Enum.SurfaceType.Smooth
+Part3.brickColor = BrickColor.new("Cyan")
+SpecialMesh4.Parent = Part3
+SpecialMesh4.MeshId = "rbxassetid://6686375902"
+SpecialMesh4.Scale = Vector3.new(0.07018756866455078, 0.08468782156705856, 0.08851051330566406)
+SpecialMesh4.TextureId = "rbxassetid://6686375937"
+SpecialMesh4.MeshType = Enum.MeshType.FileMesh
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = game:GetService("Players").LocalPlayer.Backpack
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
